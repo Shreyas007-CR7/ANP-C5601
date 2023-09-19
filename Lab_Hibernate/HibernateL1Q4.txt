@@ -1,0 +1,45 @@
+Question.4] What is Criteria, Projection, Restriction in hibernate? Explain with example?
+
+Ans:
+
+In Hibernate, which is an Object-Relational Mapping (ORM) framework for Java, "Criteria," "Projection," and "Restriction" are concepts used to create and execute queries against a relational database using a more object-oriented approach.
+
+1. **Criteria:**
+   The Criteria API in Hibernate allows you to create queries programmatically by defining various criteria that your result set should meet. It provides a more type-safe and object-oriented way of building queries compared to HQL (Hibernate Query Language). Criteria queries are constructed using the `Criteria` class.
+
+   Example:
+   Let's say you have an entity class `Product` with attributes like `id`, `name`, and `price`. You can use Criteria to retrieve products with a certain price range:
+
+   ```java
+   Criteria criteria = session.createCriteria(Product.class);
+   criteria.add(Restrictions.between("price", minPrice, maxPrice));
+   List<Product> products = criteria.list();
+   ```
+
+2. **Projection:**
+   Projections in Hibernate define the specific columns or properties that you want to retrieve from the database. It's a way to fetch only the required data, which can improve performance and reduce memory usage.
+
+   Example:
+   Using the same `Product` entity, if you're interested only in the names of products within the specified price range, you can use a projection:
+
+   ```java
+   Criteria criteria = session.createCriteria(Product.class);
+   criteria.add(Restrictions.between("price", minPrice, maxPrice));
+   criteria.setProjection(Projections.property("name"));
+   List<String> productNames = criteria.list();
+   ```
+
+3. **Restriction:**
+   Restrictions are conditions that you apply to your Criteria query to filter the results based on certain criteria. These conditions are applied to the properties of your entity and allow you to narrow down the result set.
+
+   Example:
+   Continuing with the `Product` entity, if you want to retrieve products with a specific name and within a price range, you can use restrictions:
+
+   ```java
+   Criteria criteria = session.createCriteria(Product.class);
+   criteria.add(Restrictions.eq("name", productName));
+   criteria.add(Restrictions.between("price", minPrice, maxPrice));
+   List<Product> products = criteria.list();
+   ```
+
+These concepts allow you to build dynamic queries in a more flexible and type-safe manner. However, please note that as of my last training cut-off in September 2021, Hibernate's official documentation might have more recent updates and examples. Always refer to the latest documentation or resources for the most up-to-date information on Hibernate's features and usage.

@@ -1,0 +1,194 @@
+1.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+</head>
+<body>
+    <h1>Student Registration Form</h1>
+    <form action="submit_registration.php" method="post">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required><br><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required><br><br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br><br>
+
+        <label for="course">Course:</label>
+        <input type="text" id="course" name="course" required><br><br>
+
+        <label for="year">Year of Study:</label>
+        <input type="number" id="year" name="year" min="1" required><br><br>
+
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+</body>
+</html>
+
+2.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Choice Questions</title>
+</head>
+<body>
+    <h1>Multiple Choice Questions</h1>
+
+    <form action="submit_answers.php" method="post">
+        <h2>Question 1:</h2>
+        <p>What is the capital of France?</p>
+        <label>
+            <input type="radio" name="q1" value="paris"> Paris
+        </label><br>
+        <label>
+            <input type="radio" name="q1" value="london"> London
+        </label><br>
+        <label>
+            <input type="radio" name="q1" value="berlin"> Berlin
+        </label><br>
+
+        <h2>Question 2:</h2>
+        <p>Which planet is known as the "Red Planet"?</p>
+        <label>
+            <input type="radio" name="q2" value="mars"> Mars
+        </label><br>
+        <label>
+            <input type="radio" name="q2" value="venus"> Venus
+        </label><br>
+        <label>
+            <input type="radio" name="q2" value="earth"> Earth
+        </label><br>
+
+        <!-- Add more questions here -->
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+3.
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frames Example</title>
+</head>
+<frameset cols="30%,70%">
+    <frame name="menu" src="menu.html">
+    <frame name="content" src="content.html">
+</frameset>
+<noframes>
+    <body>
+        <p>This page uses frames, but your browser doesn't support them.</p>
+    </body>
+</noframes>
+</html>
+
+4.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+</head>
+<body>
+    <h1>Welcome to the Main Page</h1>
+    <p>Click on the links below to navigate to other pages:</p>
+    
+    <ul>
+        <li><a href="page1.html">Page 1</a></li>
+        <li><a href="page2.html">Page 2</a></li>
+        <li><a href="page3.html">Page 3</a></li>
+    </ul>
+</body>
+</html>
+In this example, we have a main page (index.html) with three hyperlinks that point to other pages (page1.html, page2.html, and page3.html).
+
+Create the content for the linked pages (e.g., page1.html, page2.html, and page3.html). Here's an example of page1.html:
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1</title>
+</head>
+<body>
+    <h1>Welcome to Page 1</h1>
+    <p>This is the content of Page 1.</p>
+    
+    <p><a href="index.html">Back to Main Page</a></p>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1</title>
+</head>
+<body>
+    <h1>Welcome to Page 1</h1>
+    <p>This is the content of Page 1.</p>
+    
+    <p><a href="index.html">Back to Main Page</a></p>
+</body>
+</html>
+
+5.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Button</title>
+</head>
+<body>
+    <h1>Search on Google</h1>
+    
+    <!-- Search input -->
+    <form action="https://www.google.com/search" method="GET" target="_blank">
+        <input type="text" name="q" placeholder="Search on Google">
+        <input type="submit" value="Search">
+    </form>
+</body>
+</html>
+In this code:
+
+We have a basic HTML structure with a form that contains an input field and a search button.
+The form element has an action attribute set to "https://www.google.com/search", which specifies the URL to Google's search page.
+The method attribute is set to "GET" to send the search query as a URL parameter.
+The target attribute is set to "_blank", which opens the Google search page in a new browser tab or window when the search button is clicked.
+Inside the form, there is an input element of type "text" with the name attribute set to "q," which is the parameter used by Google for the search query.
+Finally, there is an input element of type "submit" with the value "Search" that serves as the search button.
+When you enter a search term and click the "Search" button, it will take you to Google's search results page with the search query you entered.
+
+
+
+
+
+
+
+
+
+
+

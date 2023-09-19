@@ -1,0 +1,322 @@
+Q1) create the Student Registration form and perform validation on student name, email id, password and confirm password.
+
+Ans:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Registration</h2>
+        <form id="registration-form" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <span id="name-error" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <span id="email-error" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <span id="password-error" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+                <span id="confirm-password-error" class="error"></span>
+            </div>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+  </body>
+</html>
+===========================================================================================================================================================================
+
+Q2)Accept a name of student in text box and display the placement drive form if only student is member of Anudip.
+
+
+Ans:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Placement Drive Form</title>
+</head>
+<body>
+    <h2>Placement Drive Form</h2>
+    
+    
+    <label for="student-name">Enter Your Name:</label>
+    <input type="text" id="student-name" placeholder="Your Name">
+    <button onclick="checkMembership()">Submit</button>
+    
+    
+    <div id="placement-form" style="display: none;">
+        <h3>Placement Drive Registration</h3>
+        <form>
+            <!-- Add placement drive form fields here -->
+            <label for="resume">Upload Resume:</label>
+            <input type="file" id="resume" name="resume">
+            <br>
+            <input type="submit" value="Register for Placement Drive">
+        </form>
+    </div>
+
+    <script>
+        function checkMembership() {
+            var studentName = document.getElementById("student-name").value;
+
+           
+            if (studentName.toLowerCase().includes("anudip")) {
+                // Show the placement drive form
+                document.getElementById("placement-form").style.display = "block";
+            } else {
+                alert("Sorry, you are not a member of Anudip.");
+                
+                document.getElementById("placement-form").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
+===========================================================================================================================================================================
+
+Q3)create a mini calculator using java script .
+
+Ans:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini Calculator</title>
+    <style>
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mini Calculator</h2>
+    <input type="text" id="result" placeholder="Result" readonly>
+    <input type="text" id="input1" placeholder="Enter number 1">
+    <input type="text" id="input2" placeholder="Enter number 2">
+    <br>
+    <button onclick="add()">Add</button>
+    <button onclick="subtract()">Subtract</button>
+    <button onclick="multiply()">Multiply</button>
+    <button onclick="divide()">Divide</button>
+
+    <script>
+        function add() {
+            var num1 = parseFloat(document.getElementById("input1").value);
+            var num2 = parseFloat(document.getElementById("input2").value);
+            var result = num1 + num2;
+            document.getElementById("result").value = result;
+        }
+
+        function subtract() {
+            var num1 = parseFloat(document.getElementById("input1").value);
+            var num2 = parseFloat(document.getElementById("input2").value);
+            var result = num1 - num2;
+            document.getElementById("result").value = result;
+        }
+
+        function multiply() {
+            var num1 = parseFloat(document.getElementById("input1").value);
+            var num2 = parseFloat(document.getElementById("input2").value);
+            var result = num1 * num2;
+            document.getElementById("result").value = result;
+        }
+
+        function divide() {
+            var num1 = parseFloat(document.getElementById("input1").value);
+            var num2 = parseFloat(document.getElementById("input2").value);
+            
+            if (num2 === 0) {
+                alert("Division by zero is not allowed.");
+                return;
+            }
+            
+            var result = num1 / num2;
+            document.getElementById("result").value = result;
+        }
+    </script>
+</body>
+</html>
+===========================================================================================================================================================================
+
+Q4)create a webpage for MCQs and display the questions with correct Answer After clicking on submit button.
+
+Ans:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCQ Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .question {
+            margin-bottom: 10px;
+        }
+        .options {
+            margin-left: 20px;
+        }
+        .correct-answer {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>MCQ Quiz</h2>
+        <form id="quiz-form" onsubmit="return showAnswers()">
+            <div class="question">
+                <p>1. What is the capital of France?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="paris"> Paris</label><br>
+                    <label><input type="radio" name="q1" value="london"> London</label><br>
+                    <label><input type="radio" name="q1" value="berlin"> Berlin</label><br>
+                    <label><input type="radio" name="q1" value="rome"> Rome</label><br>
+                </div>
+                <div class="correct-answer">Correct Answer: Paris</div>
+            </div>
+
+            <div class="question">
+                <p>2. Which planet is known as the Red Planet?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="earth"> Earth</label><br>
+                    <label><input type="radio" name="q2" value="mars"> Mars</label><br>
+                    <label><input type="radio" name="q2" value="venus"> Venus</label><br>
+                    <label><input type="radio" name="q2" value="jupiter"> Jupiter</label><br>
+                </div>
+                <div class="correct-answer">Correct Answer: Mars</div>
+            </div>
+
+            <input type="submit" value="Submit">
+        </form>
+
+        <div id="results" style="display: none;">
+            <h3>Results:</h3>
+            <div id="score"></div>
+        </div>
+    </div>
+
+    <script>
+        function showAnswers() {
+            var correctAnswers = {
+                q1: "paris",
+                q2: "mars"
+            };
+
+            var score = 0;
+            var totalQuestions = 0;
+
+            for (var question in correctAnswers) {
+                totalQuestions++;
+                var selectedAnswer = document.querySelector('input[name="' + question + '"]:checked');
+                if (selectedAnswer) {
+                    if (selectedAnswer.value === correctAnswers[question]) {
+                        score++;
+                    }
+                }
+            }
+
+            var resultsDiv = document.getElementById("results");
+            resultsDiv.style.display = "block";
+
+            var scoreDiv = document.getElementById("score");
+            scoreDiv.innerHTML = "You scored " + score + " out of " + totalQuestions + " questions.";
+
+            return false;
+        }
+    </script>
+</body>
+</html>
+===========================================================================================================================================================================
+
+Q5)create a Employee class in javacript and display only those employee information who belongs from Delhi NCR.
+
+Ans:
+
+class Employee {
+    constructor(name, city) {
+        this.name = name;
+        this.city = city;
+    }
+}
+
+
+const employees = [
+    new Employee("John", "Delhi"),
+    new Employee("Alice", "Mumbai"),
+    new Employee("Bob", "Delhi"),
+    new Employee("Eve", "Delhi"),
+    new Employee("Charlie", "Bangalore"),
+];
+
+
+function displayDelhiNCREmployees() {
+    const delhiNCREmployees = employees.filter(employee => employee.city === "Delhi");
+    
+    if (delhiNCREmployees.length === 0) {
+        console.log("No employees from Delhi NCR found.");
+    } else {
+        console.log("Employees from Delhi NCR:");
+        delhiNCREmployees.forEach(employee => {
+            console.log(`Name: ${employee.name}, City: ${employee.city}`);
+        });
+    }
+}
+
+
+displayDelhiNCREmployees();
+

@@ -1,0 +1,458 @@
+Q.1) Why are the DDL, DML, DQL commands using in SQL? Explain with examples.
+
+Note: Explain alter command in details
+
+Ans:
+
+DDL (Data Definition Language):
+
+DDL commands are used to define, modify, and manage the structure of database objects such as tables, indexes, and schemas. Some common DDL commands include:
+
+CREATE TABLE: Used to create a new table with specified columns and data types.
+
+sql
+Copy code
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    hire_date DATE
+);
+
+DML (Data Manipulation Language):
+
+DML commands are used to interact with data within the database. They allow you to insert, update, and delete data in tables. Some common DML commands include:
+
+INSERT INTO: Used to add new rows (records) to a table.
+
+sql
+Copy code
+INSERT INTO employees (employee_id, first_name, last_name, hire_date)
+VALUES (1, 'John', 'Doe', '2023-01-15');
+
+DQL (Data Query Language):
+
+DQL commands are used to retrieve data from the database. The primary DQL command is SELECT, which is used to query and retrieve data from one or more tables based on specific conditions. Examples:
+
+Basic SELECT query to retrieve all rows from a table:
+
+sql
+
+SELECT * FROM employees;
+
+DQL (Data Query Language):
+
+DQL commands are used to retrieve data from the database. The primary DQL command is SELECT, which is used to query and retrieve data from one or more tables based on specific conditions. Examples:
+
+Basic SELECT query to retrieve all rows from a table:
+
+sql
+
+SELECT * FROM employees;
+
+============================================================================================================================================================================================
+
+Q.2)What is difference between the following?
+
+      a) truncate vs delete command
+
+      b) primary key vs unique key
+
+Ans:
+
+a) Truncate vs. Delete Command:
+
+Truncate Command:
+
+Operation: The TRUNCATE command is used to remove all the rows from a table quickly.
+Rollback: It cannot be rolled back because it is a DDL (Data Definition Language) statement.
+Performance: TRUNCATE is faster than DELETE as it does not generate individual row delete statements and does not log individual row deletions.
+Reset Identity: In some databases, it may reset identity columns (auto-increment) to the initial seed value.
+Conditions: TRUNCATE cannot have a WHERE clause. It removes all rows from the table.
+Delete Command:
+
+Operation: The DELETE command is used to remove specific rows from a table based on a condition.
+Rollback: It can be rolled back because it is a DML (Data Manipulation Language) statement.
+Performance: DELETE is slower than TRUNCATE as it generates individual row delete statements and logs each row deletion.
+Reset Identity: DELETE does not reset identity columns.
+Conditions: DELETE can have a WHERE clause to specify which rows to delete.
+In summary, TRUNCATE is faster and doesn't generate individual delete statements, but it's less flexible and can't be used to selectively delete rows. DELETE allows for selective row deletion but is slower and generates more overhead.
+
+b) Primary Key vs. Unique Key:
+
+Primary Key:
+
+Uniqueness: A primary key is a column or set of columns that uniquely identify each row in a table. It enforces the uniqueness constraint, meaning that no two rows can have the same values in the primary key column(s).
+Null Values: A primary key column cannot contain NULL values. Every row must have a unique, non-null value in the primary key column(s).
+Number of Columns: There can be only one primary key per table, and it can consist of one or multiple columns.
+Clustered Index: In some databases, the primary key automatically creates a clustered index, which determines the physical order of data in the table.
+Unique Key:
+
+Uniqueness: A unique key is a column or set of columns that enforces uniqueness, similar to a primary key. It ensures that no two rows can have the same values in the unique key column(s).
+Null Values: A unique key column can contain NULL values, but only one NULL value is allowed. This means that while enforcing uniqueness, it allows one NULL value in the column.
+Number of Columns: There can be multiple unique keys in a table, and each unique key can consist of one or multiple columns.
+Clustered Index: A unique key does not automatically create a clustered index.
+In summary, both primary keys and unique keys enforce uniqueness constraints on columns, but primary keys have additional restrictions, such as not allowing NULL values and being limited to one per table. Unique keys allow NULL values (with restrictions) and can be applied to multiple columns in a table.
+
+============================================================================================================================================================================================
+Q.3)Create following tables and fill data accordingly?
+
+   tbl_country -> country_id pk, country_name not null
+
+   tbl_state->  state_id pk, state_name not null, country_id fk
+
+   tbl_city->  city_id    pk, city_name    not null, state_id   fk
+
+   tbl_employee->  employee_id  pk, emloyee_name not null, salary  ,  contact_no unique, city_id fk 
+
+Ans:-
+-- Create tbl_country table
+CREATE TABLE tbl_country (
+    country_id INT PRIMARY KEY,
+    country_name VARCHAR(255) NOT NULL
+);
+
+-- Insert data into tbl_country
+INSERT INTO tbl_country (country_id, country_name)
+VALUES
+    (1, 'United States'),
+    (2, 'Canada'),
+    (3, 'United Kingdom');
+
+-- Create tbl_state table
+CREATE TABLE tbl_state (
+    state_id INT PRIMARY KEY,
+    state_name VARCHAR(255) NOT NULL,
+    country_id INT,
+    FOREIGN KEY (country_id) REFERENCES tbl_country(country_id)
+);
+
+-- Insert data into tbl_state
+INSERT INTO tbl_state (state_id, state_name, country_id)
+VALUES
+    (101, 'California', 1),
+    (102, 'Ontario', 2),
+    (103, 'London', 3);
+
+-- Create tbl_city table
+CREATE TABLE tbl_city (
+    city_id INT PRIMARY KEY,
+    city_name VARCHAR(255) NOT NULL,
+    state_id INT,
+    FOREIGN KEY (state_id) REFERENCES tbl_state(state_id)
+);
+
+-- Insert data into tbl_city
+INSERT INTO tbl_city (city_id, city_name, state_id)
+VALUES
+    (1001, 'Los Angeles', 101),
+    (1002, 'Toronto', 102),
+    (1003, 'Cambridge', 103);
+
+-- Create tbl_employee table
+CREATE TABLE tbl_employee (
+    employee_id INT PRIMARY KEY,
+    employee_name VARCHAR(255) NOT NULL,
+    salary DECIMAL(10, 2),
+    contact_no VARCHAR(20) UNIQUE,
+    city_id INT,
+    FOREIGN KEY (city_id) REFERENCES tbl_city(city_id)
+);
+
+-- Insert data into tbl_employee
+INSERT INTO tbl_employee (employee_id, employee_name, salary, contact_no, city_id)
+VALUES
+    (10001, 'John Doe', 60000.00, '123-456-7890', 1001),
+    (10002, 'Jane Smith', 55000.50, '987-654-3210', 1002),
+    (10003, 'Bob Johnson', 62000.75, '555-123-4567', 1003);
+
+============================================================================================================================================================================================
+
+Q.4) What is JOIN in sql? Explain cross join, inner join and outer join with example?
+
+Ans:
+In SQL, the `JOIN` operation is used to combine rows from two or more tables based on a related column between them. It allows you to retrieve data from multiple tables in a single query by specifying how the tables are related. There are several types of joins, including:
+
+1. INNER JOIN
+
+:
+   - An inner join returns only the rows that have matching values in both tables being joined.
+   - It filters out rows where there is no match between the specified columns in the two tables.
+
+   Example:
+   Let's say we have two tables, `Orders` and `Customers`, and we want to retrieve a list of orders along with the customer information for each order:
+
+   
+   SELECT Orders.OrderID, Customers.CustomerName
+   FROM Orders
+   INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+   
+
+2. LEFT OUTER JOIN (or LEFT JOIN):
+   - A left outer join returns all rows from the left table (the first table mentioned) and the matched rows from the right table (the second table mentioned). If there is no match, NULL values are returned for columns from the right table.
+
+   Example:
+   Suppose we want to retrieve a list of all customers and their associated orders (if any):
+
+   
+   SELECT Customers.CustomerName, Orders.OrderID
+   FROM Customers
+   LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+   
+
+3. RIGHT OUTER JOIN (or RIGHT JOIN):
+   - A right outer join is similar to a left outer join but returns all rows from the right table and the matched rows from the left table. If there is no match, NULL values are returned for columns from the left table.
+
+   Example:
+   If we want to retrieve a list of all orders and the associated customer information (if any):
+
+   SELECT Customers.CustomerName, Orders.OrderID
+   FROM Customers
+   RIGHT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+   
+
+4. FULL OUTER JOIN (or FULL JOIN):
+   - A full outer join returns all rows when there is a match in either the left or right table. If there is no match, NULL values are returned for columns from the table that doesn't have a match.
+
+   Example:
+   Suppose we want to retrieve a list of all customers and all orders, showing the customer information if there's a match and the order information if there's a match:
+
+   SELECT Customers.CustomerName, Orders.OrderID
+   FROM Customers
+   FULL JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+   
+
+5. CROSS JOIN:
+   - A cross join, also known as a Cartesian join, returns the Cartesian product of two tables. It combines each row from the first table with every row from the second table, resulting in a large result set.
+   
+   Example:
+   If we want to generate all possible combinations of employees and departments:
+
+   SELECT Employees.EmployeeName, Departments.DepartmentName
+   FROM Employees
+   CROSS JOIN Departments;
+ ===========================================================================================================================================================================================  
+Q5) Explain query life cycle? Give some select query example to show the use of following?
+
+     a) like, in, not in, null, not null, between, >, >=, <, <=
+
+     b) group by, having, sum, max, min, avg, count
+
+
+Ans:
+
+The query lifecycle in a relational database system generally consists of several stages, including parsing, optimization, execution, and result retrieval. Here's an overview of the query lifecycle:
+
+1. **Parsing**:
+   - The first stage is parsing, where the database management system (DBMS) parses the SQL query to ensure it is syntactically correct.
+   - The parser breaks down the query into its various components, such as SELECT statements, JOIN clauses, WHERE conditions, etc.
+
+2. **Optimization**:
+   - After parsing, the DBMS optimizer generates an execution plan for the query.
+   - The optimizer decides the most efficient way to retrieve the requested data, considering factors like indexing, table statistics, and available system resources.
+
+3. **Execution**:
+   - In this stage, the DBMS executes the query according to the generated execution plan.
+   - Data retrieval and filtering occur, and the result set is constructed.
+
+4. **Result Retrieval**:
+   - Once the execution is complete, the DBMS retrieves the result set and returns it to the user or application that issued the query.
+
+Now, let's look at some examples of SQL queries using the requested operators and functions:
+
+**a) Examples using LIKE, IN, NOT IN, NULL, NOT NULL, BETWEEN, >, >=, <, <=:**
+
+- Using `LIKE` to find all employees with names containing "John":
+
+  ```sql
+  SELECT * FROM Employees WHERE EmployeeName LIKE '%John%';
+  ```
+
+- Using `IN` to find products with specific IDs:
+
+  ```sql
+  SELECT * FROM Products WHERE ProductID IN (101, 102, 103);
+  ```
+
+- Using `NOT IN` to exclude specific values:
+
+  ```sql
+  SELECT * FROM Customers WHERE Country NOT IN ('USA', 'Canada');
+  ```
+
+- Using `IS NULL` to find records with empty email addresses:
+
+  ```sql
+  SELECT * FROM Customers WHERE Email IS NULL;
+  ```
+
+- Using `IS NOT NULL` to find records with non-empty phone numbers:
+
+  ```sql
+  SELECT * FROM Customers WHERE Phone IS NOT NULL;
+  ```
+
+- Using `BETWEEN` to find orders placed within a date range:
+
+  ```sql
+  SELECT * FROM Orders WHERE OrderDate BETWEEN '2023-01-01' AND '2023-02-28';
+  ```
+
+- Using `>` to find products with prices greater than $50:
+
+  ```sql
+  SELECT * FROM Products WHERE Price > 50;
+  ```
+
+- Using `<=` to find employees with salaries less than or equal to $40,000:
+
+  ```sql
+  SELECT * FROM Employees WHERE Salary <= 40000;
+  ```
+
+**b) Examples using GROUP BY, HAVING, SUM, MAX, MIN, AVG, COUNT:**
+
+- Using `GROUP BY` to group sales by product category:
+
+  ```sql
+  SELECT Category, SUM(Quantity) AS TotalQuantity
+  FROM Sales
+  GROUP BY Category;
+  ```
+
+- Using `HAVING` to filter grouped results:
+
+  ```sql
+  SELECT Category, SUM(Quantity) AS TotalQuantity
+  FROM Sales
+  GROUP BY Category
+  HAVING SUM(Quantity) > 100;
+  ```
+
+- Using `SUM` to calculate the total revenue from orders:
+
+  ```sql
+  SELECT SUM(Price * Quantity) AS TotalRevenue
+  FROM OrderDetails;
+  ```
+
+- Using `MAX` to find the highest salary among employees:
+
+  ```sql
+  SELECT MAX(Salary) AS HighestSalary
+  FROM Employees;
+  ```
+
+- Using `MIN` to find the smallest product price:
+
+  ```sql
+  SELECT MIN(Price) AS LowestPrice
+  FROM Products;
+  ```
+
+- Using `AVG` to calculate the average age of customers:
+
+  ```sql
+  SELECT AVG(Age) AS AverageAge
+  FROM Customers;
+  ```
+
+- Using `COUNT` to count the number of orders:
+
+  ```sql
+  SELECT COUNT(*) AS OrderCount
+  FROM Orders;
+  ```
+
+============================================================================================================================================================================================
+
+
+6) What is sub-query? How we can get following results using normal sub-query and using dense_rank() function in oracle?
+
+
+
+      a)  second highest salary
+
+      b)  Third highest salary
+
+      c)  Fifth highest salary
+
+Ans:
+
+A subquery, also known as a nested query or inner query, is a query that is embedded within another SQL query. Subqueries are used to retrieve data that will be used in the main query as a filter condition, to make calculations, or for other purposes. They are enclosed within parentheses and can appear in various parts of an SQL statement, such as the SELECT, FROM, WHERE, or HAVING clauses.
+
+To find the second, third, and fifth highest salaries using subqueries and the `DENSE_RANK()` function in Oracle, you can use the following SQL queries:
+
+Assuming you have an `Employees` table with a `Salary` column:
+
+**a) Second Highest Salary:**
+
+Using a subquery:
+```sql
+SELECT DISTINCT Salary
+FROM Employees e1
+WHERE 2 = (
+    SELECT COUNT(DISTINCT Salary)
+    FROM Employees e2
+    WHERE e2.Salary >= e1.Salary
+);
+```
+
+Using `DENSE_RANK()`:
+```sql
+SELECT DISTINCT Salary
+FROM (
+    SELECT Salary, DENSE_RANK() OVER (ORDER BY Salary DESC) AS SalaryRank
+    FROM Employees
+) RankedSalaries
+WHERE SalaryRank = 2;
+```
+
+**b) Third Highest Salary:**
+
+Using a subquery:
+```sql
+SELECT DISTINCT Salary
+FROM Employees e1
+WHERE 3 = (
+    SELECT COUNT(DISTINCT Salary)
+    FROM Employees e2
+    WHERE e2.Salary >= e1.Salary
+);
+```
+
+Using `DENSE_RANK()`:
+```sql
+SELECT DISTINCT Salary
+FROM (
+    SELECT Salary, DENSE_RANK() OVER (ORDER BY Salary DESC) AS SalaryRank
+    FROM Employees
+) RankedSalaries
+WHERE SalaryRank = 3;
+```
+
+**c) Fifth Highest Salary:**
+
+Using a subquery:
+```sql
+SELECT DISTINCT Salary
+FROM Employees e1
+WHERE 5 = (
+    SELECT COUNT(DISTINCT Salary)
+    FROM Employees e2
+    WHERE e2.Salary >= e1.Salary
+);
+```
+
+Using `DENSE_RANK()`:
+```sql
+SELECT DISTINCT Salary
+FROM (
+    SELECT Salary, DENSE_RANK() OVER (ORDER BY Salary DESC) AS SalaryRank
+    FROM Employees
+) RankedSalaries
+WHERE SalaryRank = 5;
+```
+
+  
+

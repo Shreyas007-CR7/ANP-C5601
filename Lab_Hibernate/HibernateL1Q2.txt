@@ -1,0 +1,55 @@
+Question 2: Give a comparison of the following methods in hibernate
+
+ a) save() vs persist() vs saveOrUpdate(), 
+
+ b)update(), merge()
+
+ c) load() vs get()
+
+
+i]save():-
+
+Purpose: Used to save a new object to the database.
+Behavior: Assigns an identifier to the object immediately, even before the transaction is committed. 
+Use Case: Typically used for new objects when you want to immediately persist them and obtain their generated ID.
+
+ii]persist():-
+
+Purpose: Used to persist a new object to the database.
+Behavior: Similar to save(), but the object's identifier is assigned during the transaction commit, not immediately.
+Use Case: Useful when you want to delay ID generation until transaction commit for scenarios like generating identifiers based on database sequences.
+
+iii]saveOrUpdate():-
+
+Purpose: Used to either save or update an object, depending on whether it's new or already persistent.
+Behavior: Checks whether the object exists in the session or database. If it's not present, it saves it; if present, it updates it.
+Use Case: Useful when you want to handle both saving and updating in a single method call.
+
+b) update() vs merge()
+
+i]update():-
+
+Purpose: Used to update a detached object.
+Behavior: Throws an exception if the object is not persistent (attached to a session).
+Use Case: Typically used when you know that the object is already associated with a session and you want to update its database representation.
+
+ii]merge():-
+
+Purpose: Used to update a detached object, or if the object might or might not be persistent.
+Behavior: If the object is detached, it loads the persistent state of the object from the database and then applies the changes from the detached object.
+Use Case: Useful when you're unsure whether the object is still associated with a session or not, or when you want to update or save an object without 
+worrying about its attachment status.
+
+c) load() vs get()
+
+i]load():-
+
+Purpose: Used to lazily load an object from the database.
+Behavior: Returns a proxy object that represents the requested entity. The actual database query is executed only when a method is called on the proxy.
+Use Case: Useful when you want to defer loading an object until you actually need its data.
+
+ii]get():-
+
+Purpose: Used to immediately load an object from the database.
+Behavior: Retrieves the actual object from the database. If the object doesn't exist, it returns null.
+Use Case: Used when you want to load 

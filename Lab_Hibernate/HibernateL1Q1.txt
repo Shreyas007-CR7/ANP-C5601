@@ -1,0 +1,37 @@
+Question 1: What is SessionFactory in hibernate? Explain with example?
+Ans ->
+Hibernate, the SessionFactory is a central and important component that provides a factory for creating Session objects.
+ A Session represents a single unit of work and acts as a gateway to interact with the database. The SessionFactory is responsible for managing the connection to
+ the database, maintaining the mapping between Java objects and database tables, and handling the caching of objects for better performance.
+
+ example:-
+@Entity
+@Table(name = "employees")
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "salary")
+    private double salary;
+
+  }
+
+Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
+SessionFactory sessionFactory = configuration.buildSessionFactory();
+
+Session session = sessionFactory.openSession();
+Transaction transaction = session.beginTransaction();
+
+Employee employee = new Employee();
+employee.setName("John Doe");
+employee.setSalary(50000.0);
+
+session.save(employee);
+
+transaction.commit();
+session.close();

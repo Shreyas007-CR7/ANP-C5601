@@ -1,0 +1,66 @@
+Question 3: What is HQL? Show a CRUD operation using HQL?
+
+HQL:
+
+HQL, or Hibernate Query Language, is a powerful query language provided by the Hibernate ORM framework for performing database operations on persistent objects. It is similar in syntax to SQL (Structured Query Language), but instead of dealing with database tables and columns, HQL operates on Java objects and their properties.
+
+HQL allows developers to write queries using the Java object model and its associations, making it more object-oriented and abstract than directly using SQL. It provides a way to interact with the database without needing to write raw SQL queries.
+
+CRUD Operations:
+
+i]Create(Insert):
+
+Session session = sessionFactory.openSession();
+Transaction transaction = session.beginTransaction();
+
+Employee newEmployee = new Employee();
+newEmployee.setName("Alice");
+newEmployee.setSalary(60000.0);
+
+session.save(newEmployee);
+
+transaction.commit();
+session.close();
+
+
+
+ii]Read (Select):
+
+Session session = sessionFactory.openSession();
+
+String hql = "FROM Employee WHERE id = :employeeId";
+Query<Employee> query = session.createQuery(hql, Employee.class);
+query.setParameter("employeeId", 1L);
+Employee employee = query.uniqueResult();
+
+session.close();
+
+
+
+iii]Update:
+
+Session session = sessionFactory.openSession();
+Transaction transaction = session.beginTransaction();
+
+Employee employee = session.get(Employee.class, 1L);
+if (employee != null) {
+    employee.setSalary(65000.0);
+    session.update(employee);
+}
+transaction.commit();
+session.close();
+
+
+
+iv]Delete:
+
+Session session = sessionFactory.openSession();
+Transaction transaction = session.beginTransaction();
+
+Employee employee = session.get(Employee.class, 1L);
+if (employee != null) {
+    session.delete(employee);
+}
+
+transaction.commit();
+session.close();

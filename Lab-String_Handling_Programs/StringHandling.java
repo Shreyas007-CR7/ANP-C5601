@@ -1,5 +1,26 @@
-//Question 1
-//Ans->
+/*Question 1. WAP to take string and display the following result.
+
+Ex: 
+
+String str = "aaabcdddddefgggggghijjjjjjjkklnnnno";
+
+O/P:
+
+"aaa" occurred: 3 times in given string
+
+"ddddd" occurred: 5 times in given string
+
+"gggggg" occurred: 6 times in given string
+
+"jjjjjjj" occurred: 7 times in given string
+
+"kk" occurred: 2 times in given string
+
+"nnnn" occurred: 4 times in given string
+
+{aa=3, bb=2, ccc=1, dddd=3}
+
+Ans: */
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,10 +61,32 @@ public class ConsecutiveOccurrences {
     }
 }
 
-//===========================================================================================
 
-//Question 2
-//Ans ->
+============================================================================================================================================================================================
+
+/*2. WAP take any String and display number of occurrences of each character which is occurring more than 1 times.
+
+Ex: 
+
+String str = "fgaaadddddgggggghjjjjjjjkknnnnpl";
+
+O/P:
+
+g occurred: 7 Times.
+
+a occurred: 3 Times.
+
+d occurred: 5 Times.
+
+j occurred: 7 Times.
+
+k occurred: 2 Times.
+
+n occurred: 4 Times.
+
+
+Ans:  */
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -68,9 +111,20 @@ public class CharacterOccurrences {
     }
 }
 
-//==================================================================================================
-//Question 3
-//Ans->
+============================================================================================================================================================================================
+
+/*3. WAP take any string and display words in reverse order
+
+Ex:
+
+String string = "Java Concept Of The Day";
+
+O/P:
+
+Day The Of Concept Java
+
+Ans:*/
+
 public class ReverseWords {
     public static void main(String[] args) {
         String inputString = "Java Concept Of The Day";
@@ -90,10 +144,27 @@ public class ReverseWords {
     }
 }
 
-//=====================================================================================================
+============================================================================================================================================================================================
 
-//Question 4
-// Ans ->
+/*4. WAP to take any string and display length of each reverse words.
+
+Ex:
+
+String str = "India is great country";
+
+O/P
+
+aidnI length = 5
+
+si length = 2
+
+taerg length = 5
+
+yrtnuoc length = 7
+
+Ans:*/
+
+
 public class ReverseWordLengths {
     public static void main(String[] args) {
         String inputString = "India is great country";
@@ -120,9 +191,20 @@ public class ReverseWordLengths {
         return reversed.toString();
     }
 }
-//========================================================================================
-//Question 5
-//Ans->
+============================================================================================================================================================================================
+
+/*5. WAP to take any string and print largest word present in the string.
+
+Ex:
+
+String str = "India is my beautiful country";
+
+O/P:
+
+beautiful
+
+Ans: */
+
 public class LargestWord {
     public static void main(String[] args) {
         String inputString = "India is my beautiful country";
@@ -144,9 +226,44 @@ public class LargestWord {
     }
 }
 
-//===================================================================================================
-//Question 6
-//Ans->
+============================================================================================================================================================================================
+/*6. WAP to an integer array and display number of occurrences of each number.
+
+Ex: 
+
+int[] arr = {7,5,9,8,5,6,7,5,4,8};
+
+O/P:
+
+7=2
+
+5=3
+
+9=1
+
+8=2
+
+6=1
+
+4=1
+
+or
+
+7 occured 2 times
+
+5 occurred 3 times
+
+9 occurred 1 times
+
+8 occurred 2 times
+
+6 occurred 1 times
+
+4 occurred 1 times
+
+Ans:*/
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -170,9 +287,23 @@ public class NumberOccurrences {
         }
     }
 }
-//============================================================================================================
-//Question 7
-//Ans ->
+============================================================================================================================================================================================
+/*7. WAP to take string and display the following result.
+
+Ex: 
+
+String str = "aa bb cc aa bb cc bb aa bb ";
+
+O/P:
+
+"aa" occurred: 3 times in given string
+
+"bb" occurred: 4 times in given string
+
+"cc" occurred: 2 times in given string
+
+Ans:*/
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -197,9 +328,21 @@ public class WordOccurrences {
         }
     }
 }
-//============================================================================================
-//Question 8
-//Ans ->
+============================================================================================================================================================================================
+/*8. WAP to take string and make it palindrome.
+
+Ex:  
+
+String str = raj
+
+O/P
+
+---
+
+rajjar
+
+Ans:*/
+
 public class MakePalindrome {
     public static void main(String[] args) {
         String str = "raj";
